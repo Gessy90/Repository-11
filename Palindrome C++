@@ -1,0 +1,56 @@
+#include <iostream>
+#include <stdio.h>
+#include <string.h>
+#include <algorithm>
+
+using namespace std;
+
+string getphrase(void) { //define the getphrase function - this function returns a string but does not expect anything
+char localBuffer[120]; //declare an array of 120 type 'char' (e.g. single characters)
+printf ("\nPlease provide a multi word phrase: "); //use the c++ printf function to output the user instruction
+fgets(localBuffer, 120, stdin); //instead of cin use the c++ function fgets to get a max of 120 characters from the stdin device
+
+return string(localBuffer); //return the users phrase but converted to a string datatype rather than an array of chars
+}
+
+
+bool filter(string &string) { //this function returns true/false and expects one parameter (bit of data) it does not get a copy of the value it gets the address of the variable
+bool status = false; //set a default return value
+if (string[string.length()-1] == '\n') { //check to see if the last bit of the string provided is a "new line" code
+string.erase(string.length()-1); //if it is remove it (we dont want to include any new lines as this may confuse the later comparison)
+status = true; //if removed update the default state to be returned
+}
+return status; //return the state associated with the operation performed
+}
+
+
+bool ispalindrome(string p_phrase) {
+  string localString;                
+  bool palindrome = false;
+  for (int i=0; i< p_phrase.length(); i++) {
+    cout << p_phrase[i];
+  }
+
+  //
+  // this function has access to the user provided phrase  via the local variable 'p_phrase'
+  // your instructions should be added in this section - what happens first, then what, ...
+  // maybe just output it to make sure!
+  // then maybe try to reverse it and output that
+  // then maybe change it all to lowercase and output that
+  // then maybe try to remove all spaces and punctuation and output that
+  // then what ?? ... remember, solve it in your head first then try to complete a bit at a time!
+  //
+
+  return palindrome;
+}
+
+
+int main() {
+string phrase; //declare a local variable as type 'string'
+phrase = getphrase(); //call the getphrase function and store the string retuned in the local variable
+if(filter(phrase)==true) { //call the filter function
+cout << "\nIs palindrome: '" << ispalindrome(phrase) << "' "; //output the result of running the "ispalindrome" function
+} else {
+cout << "\nThe seems to be a problem with the phrase!";
+}
+}
